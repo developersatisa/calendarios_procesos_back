@@ -6,6 +6,10 @@ from app.services import plantilla_service
 router = APIRouter()
 
 
+@router.get("/con-todo")
+def listar_todo(db: Session = Depends(get_db)):
+    return plantilla_service.obtener_plantillas_con_procesos_y_hitos(db)
+
 @router.post("/")
 def crear(data: dict, db: Session = Depends(get_db)):
     return plantilla_service.crear(db, data)
